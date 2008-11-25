@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (OpenSocial::Connection)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File opensocial/connection.rb, line 53</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
+      <span class="ruby-identifier">options</span> = <span class="ruby-constant">DEFAULT_OPTIONS</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+      <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{key}=&quot;</span>, <span class="ruby-identifier">value</span>)
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@auth</span> <span class="ruby-operator">==</span> <span class="ruby-constant">AUTH_HMAC</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">has_valid_hmac_triple?</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'Connection authentication is set to '</span> <span class="ruby-operator">+</span>
+                                <span class="ruby-value str">'HMAC-SHA1, but a valid consumer_key/'</span> <span class="ruby-operator">+</span>
+                                <span class="ruby-value str">'secret and xoauth_requestor_id triple '</span> <span class="ruby-operator">+</span>
+                                <span class="ruby-value str">'was not supplied.'</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@auth</span> <span class="ruby-operator">==</span> <span class="ruby-constant">AUTH_ST</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@st</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'Connection authentication is set to '</span> <span class="ruby-operator">+</span>
+                                <span class="ruby-value str">'security token, but a security token was '</span> <span class="ruby-operator">+</span>
+                                <span class="ruby-value str">'not supplied.'</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-operator">!</span>[<span class="ruby-constant">AUTH_HMAC</span>, <span class="ruby-constant">AUTH_ST</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@auth</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'Connection authentication is set to an '</span> <span class="ruby-operator">+</span>
+                                <span class="ruby-value str">'unknown value.'</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

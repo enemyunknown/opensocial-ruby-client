@@ -1,0 +1,16 @@
+{
+  "totalResults" : 2,
+  "startIndex" : 0,
+  "entry" : [
+    {
+      "id" : "example.org:34KJDCSKJN2HHF0DW20394/friends",
+      "title" : "Peeps",
+      "link" : {"rel" : "alternate", "href" : "http://api.example.org/people/example.org:34KJDCSKJN2HHF0DW20394/@friends" }
+    },
+    {
+      "id" : "example.org:34KJDCSKJN2HHF0DW20394/family",
+      "title" : "Family",
+      "link" : {"rel" : "alternate", "href" : "http://api.example.org/people/example.org:34KJDCSKJN2HHF0DW20394/@family" }
+    }
+  ]
+}

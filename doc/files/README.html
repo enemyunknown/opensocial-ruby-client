@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Tue Nov 25 13:46:44 -0800 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>OpenSocial &#8212; REST/RPC and authentication wrappers</h1>
+<p>
+The OpenSocial modules provides wrapper functionality for REST and RPC HTTP
+requests to OpenSocial-compliant endpoints. The results of these calls are
+translated into helper objects, each representing a specific type of data
+that the calls are expected to return. Finally, the module provides helper
+functionality for verification of signed makeRequest calls.
+</p>
+<h2>Features</h2>
+<p>
+This library operates using a set of wrappers around basic HTTP requests
+and authentication, including the following features:
+</p>
+<ul>
+<li>Read-only REST support:
+
+<pre>
+ r = OpenSocial::FetchPersonRequest.new(connection)
+ person = r.send
+ puts person.display_name
+
+ # person is a Person object.
+</pre>
+</li>
+<li>Read-only RPC support (with batch processing):
+
+<pre>
+ r = OpenSocial::RpcRequest.new(connection)
+ r.add(:me =&gt; OpenSocial::FetchPersonRequest.new)
+ r.add(:friends =&gt; OpenSocial::FetchPeopleRequest.new)
+ data = r.send
+
+ # data contains two entries.
+ # data[:me] is a Person object.
+ # data[:friends] is a Collection of Person objects, indexed by ID.
+</pre>
+</li>
+<li>Automatic <a href="../classes/OAuth.html">OAuth</a> HMAC-SHA1 signing on
+outgoing requests:
+
+<pre>
+ consumer_key = 'orkut.com:623061448914'
+ consumer_secret = 'uynAeXiWTisflWX99KU1D2q5'
+ requestor = '03067092798963641994'
+
+ c = OpenSocial::Connection.new(:container =&gt; OpenSocial::Connection::ORKUT,
+                                :consumer_key =&gt; consumer_key,
+                                :consumer_secret =&gt; consumer_secret,
+                                :xoauth_requestor_id =&gt; requestor)
+ r = OpenSocial::FetchPersonRequest.new(c)
+ person = r.send
+</pre>
+</li>
+<li>Incoming signed makeRequest verification helper:
+
+<pre>
+ class ExampleController &lt; ApplicationController
+   CONSUMER_KEY = '623061448914'
+   CONSUMER_SECRET = 'uynAeXiWTisflWX99KU1D2q5'
+
+   include OpenSocial::Auth
+
+   before_filter :validate
+
+   def return_private_data
+   end
+ end
+</pre>
+</li>
+</ul>
+<h2>Installation</h2>
+<p>
+The following gems and their dependencies are required by this client
+library:
+</p>
+<ul>
+<li>oauth
+
+</li>
+<li>json
+
+</li>
+<li>rails (optional, for incoming signed makeRequest validation)
+
+</li>
+<li>mocha (optional, for running tests)
+
+</li>
+</ul>
+<p>
+Once you have the required gems installed, check out the project code from
+SVN, and copy opensocial.rb and opensocial/ into your application&#8216;s
+path. Then add:
+</p>
+<pre>
+  require 'opensocial'
+</pre>
+<p>
+in your code.
+</p>
+<p>
+To generate docs:
+</p>
+<pre>
+  rdoc * --main README
+</pre>
+<p>
+from the (tag/branch/trunk) root of the project directory.
+</p>
+<p>
+To run tests:
+</p>
+<pre>
+  rake test
+</pre>
+<p>
+from the (tag/branch/trunk) root of the project directory.
+</p>
+<h2>Learning More</h2>
+<p>
+Examples, current issues and feature requests, and the most up-to-date code
+are available on the <a
+href="http://code.google.com/p/opensocial-ruby-client/">project page</a>.
+</p>
+<p>
+Discussion of this client library and others takes place <a
+href="http://groups.google.com/group/opensocial-client-libraries">here</a>.
+</p>
+<h2>Contributing</h2>
+<p>
+If you&#8216;d like to contribute code to the project, check out this <a
+href="http://code.google.com/p/opensocial-ruby-client/wiki/BecomingAContributor">wiki
+page</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

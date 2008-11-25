@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>send (OpenSocial::RpcRequest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File opensocial/request.rb, line 144</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">unescape</span> = <span class="ruby-keyword kw">true</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@requests</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'RPC request requires a non-empty hash '</span> <span class="ruby-operator">+</span>
+                                   <span class="ruby-value str">'of requests in order to be sent.'</span>)
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">json</span> = <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">request_json</span>, <span class="ruby-identifier">unescape</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "entry" : {
+    "id" : "http://example.org/activities/example.org:87ead8dead6beef/self/af3778",
+    "title" : { "type" : "html",
+                "value" : "<a href=\"foo\">some activity</a>"
+              },
+    "updated" : "2008-02-20T23:35:37.266Z",
+    "body" : "Some details for some activity",
+    "bodyId" : "383777272",
+    "url" : "http://api.example.org/activity/feeds/.../af3778",
+    "userId" : "example.org:34KJDCSKJN2HHF0DW20394"
+  }
+}

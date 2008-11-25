@@ -1,0 +1,20 @@
+{
+  "totalResults" : 2,
+  "startIndex" : 0,
+  "entry" : [
+    {
+      "id" : "example.org:34KJDCSKJN2HHF0DW20394",
+      "name" : {"unstructured" : "Jane Doe"},
+      "gender" : {"displayvalue" : "女性", "key" : "FEMALE"},
+      "isOwner" : true,
+      "isViewer" : true
+    },
+    {
+      "id" : "example.org:34KJDCSKJN2HHF0DW20395",
+      "name" : {"unstructured" : "Jane Doe2"},
+      "gender" : {"displayvalue" : "女性", "key" : "FEMALE"},
+      "isOwner" : false,
+      "isViewer" : false
+    }
+  ]
+}

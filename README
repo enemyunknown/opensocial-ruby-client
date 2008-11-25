@@ -1,0 +1,99 @@
+= OpenSocial -- REST/RPC and authentication wrappers
+
+The OpenSocial modules provides wrapper functionality for REST and RPC HTTP
+requests to OpenSocial-compliant endpoints. The results of these calls are
+translated into helper objects, each representing a specific type of data
+that the calls are expected to return. Finally, the module provides helper
+functionality for verification of signed makeRequest calls.
+
+== Features
+
+This library operates using a set of wrappers around basic HTTP requests
+and authentication, including the following features:
+
+* Read-only REST support:
+
+   r = OpenSocial::FetchPersonRequest.new(connection)
+   person = r.send
+   puts person.display_name
+   
+   # person is a Person object.
+  
+* Read-only RPC support (with batch processing):
+
+   r = OpenSocial::RpcRequest.new(connection)
+   r.add(:me => OpenSocial::FetchPersonRequest.new)
+   r.add(:friends => OpenSocial::FetchPeopleRequest.new)
+   data = r.send
+   
+   # data contains two entries.
+   # data[:me] is a Person object. 
+   # data[:friends] is a Collection of Person objects, indexed by ID.
+  
+* Automatic OAuth HMAC-SHA1 signing on outgoing requests:
+
+   consumer_key = 'orkut.com:623061448914'
+   consumer_secret = 'uynAeXiWTisflWX99KU1D2q5'
+   requestor = '03067092798963641994'
+   
+   c = OpenSocial::Connection.new(:container => OpenSocial::Connection::ORKUT,
+                                  :consumer_key => consumer_key,
+                                  :consumer_secret => consumer_secret,
+                                  :xoauth_requestor_id => requestor)
+   r = OpenSocial::FetchPersonRequest.new(c)
+   person = r.send
+   
+* Incoming signed makeRequest verification helper:
+
+   class ExampleController < ApplicationController
+     CONSUMER_KEY = '623061448914'
+     CONSUMER_SECRET = 'uynAeXiWTisflWX99KU1D2q5'
+     
+     include OpenSocial::Auth
+     
+     before_filter :validate
+     
+     def return_private_data
+     end
+   end
+
+== Installation
+
+The following gems and their dependencies are required by this client library:
+
+* oauth
+* json
+* rails (optional, for incoming signed makeRequest validation)
+* mocha (optional, for running tests)
+
+Once you have the required gems installed, check out the project code from SVN,
+and copy opensocial.rb and opensocial/ into your application's path. Then add:
+
+  require 'opensocial'
+  
+in your code.
+
+To generate docs:
+
+  rdoc * --main README
+  
+from the (tag/branch/trunk) root of the project directory.
+
+To run tests:
+
+  rake test
+  
+from the (tag/branch/trunk) root of the project directory.
+
+== Learning More
+
+Examples, current issues and feature requests, and the most up-to-date code
+are available on the {project page}[http://code.google.com/p/opensocial-ruby-client/].
+
+Discussion of this client library and others takes place
+{here}[http://groups.google.com/group/opensocial-client-libraries].
+
+== Contributing
+
+If you'd like to contribute code to the project, check out this
+{wiki page}[http://code.google.com/p/opensocial-ruby-client/wiki/BecomingAContributor].
