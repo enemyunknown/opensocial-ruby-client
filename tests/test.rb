@@ -13,7 +13,21 @@
 # limitations under the License.
 
 require 'test/unit'
+require 'test/unit/ui/console/testrunner'
+require 'test/unit/testsuite'
+
 require File.dirname(__FILE__) + '/person_test'
 require File.dirname(__FILE__) + '/group_test'
 require File.dirname(__FILE__) + '/activity_test'
 require File.dirname(__FILE__) + '/appdata_test'
+
+class TS_AllTests
+  def self.suite
+    suite = Test::Unit::TestSuite.new name
+    suite << ActivityTest.suite
+    suite << AppDataTest.suite
+    suite << GroupTest.suite
+    suite << PersonTest.suite
+  end
+end
+Test::Unit::UI::Console::TestRunner.run(TS_AllTests)

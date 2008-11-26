@@ -17,7 +17,7 @@ require 'rubygems'
 require 'mocha'
 require 'json/pure'
 
-require File.dirname(__FILE__) + '/../opensocial.rb'
+require File.dirname(__FILE__) + '/../lib/opensocial.rb'
 
 module TestHelper #:nodoc:
   NO_AUTH = { :auth => OpenSocial::Connection::AUTH_ST, :st => 'some_value' }
