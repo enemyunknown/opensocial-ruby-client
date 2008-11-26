@@ -21,7 +21,7 @@ require File.dirname(__FILE__) + '/group_test'
 require File.dirname(__FILE__) + '/activity_test'
 require File.dirname(__FILE__) + '/appdata_test'
 
-class TS_AllTests
+class TS_AllTests #:nodoc:
   def self.suite
     suite = Test::Unit::TestSuite.new name
     suite << ActivityTest.suite
