@@ -27,13 +27,15 @@ module OpenSocial #:nodoc:
   
   class Activity < Base
     def initialize(json)
-      json.each do |key, value|
-        proper_key = key.snake_case
-        begin
-          self.send("#{proper_key}=", value)
-        rescue NoMethodError
-          add_attr(proper_key)
-          self.send("#{proper_key}=", value)
+      if json
+        json.each do |key, value|
+          proper_key = key.snake_case
+          begin
+            self.send("#{proper_key}=", value)
+          rescue NoMethodError
+            add_attr(proper_key)
+            self.send("#{proper_key}=", value)
+          end
         end
       end
     end

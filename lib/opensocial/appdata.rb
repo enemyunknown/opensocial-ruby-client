@@ -31,13 +31,15 @@ module OpenSocial #:nodoc:
     
     def initialize(id, json)
       @id = id
-
-      json.each do |key, value|
-        begin
-          self.send("#{key}=", value)
-        rescue NoMethodError
-          add_attr(key)
-          self.send("#{key}=", value)
+      
+      if json
+        json.each do |key, value|
+          begin
+            self.send("#{key}=", value)
+          rescue NoMethodError
+            add_attr(key)
+            self.send("#{key}=", value)
+          end
         end
       end
     end

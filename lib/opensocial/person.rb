@@ -35,20 +35,34 @@ module OpenSocial #:nodoc:
   
   class Person < Base
     def initialize(json)
-      json.each do |key, value|
-        proper_key = key.snake_case
-        begin
-          self.send("#{proper_key}=", value)
-        rescue NoMethodError
-          add_attr(proper_key)
-          self.send("#{proper_key}=", value)
+      if json
+        json.each do |key, value|
+          proper_key = key.snake_case
+          begin
+            self.send("#{proper_key}=", value)
+          rescue NoMethodError
+            add_attr(proper_key)
+            self.send("#{proper_key}=", value)
+          end
         end
       end
     end
     
-    def display_name
-      if self.name && self.name['givenName'] && self.name['familyName']
-        return self.name['givenName'] + ' ' + self.name['familyName']
+    def long_name
+      if @name && @name['givenName'] && @name['familyName']
+        return @name['givenName'] + ' ' + @name['familyName']
+      elsif @nickname
+        return @nickname
+      else
+        return ''
+      end
+    end
+    
+    def short_name
+      if @name && @name['givenName']
+        return @name['givenName']
+      elsif @nickname
+        return @nickname
       else
         return ''
       end
