@@ -27,7 +27,7 @@ class PersonTest < Test::Unit::TestCase #:nodoc:
     
     assert_equal Hash, person.name.class
     assert_equal 'Jane Doe', person.name['unstructured']
-    assert_equal '', person.display_name
+    assert_equal '', person.long_name
     
     assert_equal Hash, person.gender.class
     assert_equal '女性', person.gender['displayvalue']
@@ -51,7 +51,7 @@ class PersonTest < Test::Unit::TestCase #:nodoc:
     
     assert_equal Hash, person.name.class
     assert_equal 'Jane Doe', person.name['unstructured']
-    assert_equal '', person.display_name
+    assert_equal '', person.long_name
     
     assert_equal Hash, person.gender.class
     assert_equal '女性', person.gender['displayvalue']
@@ -81,7 +81,7 @@ class PersonTest < Test::Unit::TestCase #:nodoc:
     
     assert_equal Hash, first.name.class
     assert_equal 'Jane Doe', first.name['unstructured']
-    assert_equal '', first.display_name
+    assert_equal '', first.long_name
     
     assert_equal Hash, first.gender.class
     assert_equal '女性', first.gender['displayvalue']
@@ -97,7 +97,7 @@ class PersonTest < Test::Unit::TestCase #:nodoc:
     
     assert_equal Hash, second.name.class
     assert_equal 'Jane Doe2', second.name['unstructured']
-    assert_equal '', second.display_name
+    assert_equal '', second.long_name
     
     assert_equal Hash, second.gender.class
     assert_equal '女性', second.gender['displayvalue']
