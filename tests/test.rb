@@ -20,6 +20,9 @@ require File.dirname(__FILE__) + '/person_test'
 require File.dirname(__FILE__) + '/group_test'
 require File.dirname(__FILE__) + '/activity_test'
 require File.dirname(__FILE__) + '/appdata_test'
+require File.dirname(__FILE__) + '/rpcrequest_test'
+require File.dirname(__FILE__) + '/request_test'
+require File.dirname(__FILE__) + '/online_test'
 
 class TS_AllTests #:nodoc:
   def self.suite
@@ -28,6 +31,9 @@ class TS_AllTests #:nodoc:
     suite << AppDataTest.suite
     suite << GroupTest.suite
     suite << PersonTest.suite
+    suite << RpcRequestTest.suite
+    suite << RequestTest.suite
+    suite << OnlineTest.suite
   end
 end
 Test::Unit::UI::Console::TestRunner.run(TS_AllTests)
