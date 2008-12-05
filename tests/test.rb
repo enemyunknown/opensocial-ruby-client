@@ -22,6 +22,7 @@ require File.dirname(__FILE__) + '/activity_test'
 require File.dirname(__FILE__) + '/appdata_test'
 require File.dirname(__FILE__) + '/rpcrequest_test'
 require File.dirname(__FILE__) + '/request_test'
+require File.dirname(__FILE__) + '/connection_test'
 require File.dirname(__FILE__) + '/online_test'
 
 class TS_AllTests #:nodoc:
@@ -33,6 +34,7 @@ class TS_AllTests #:nodoc:
     suite << PersonTest.suite
     suite << RpcRequestTest.suite
     suite << RequestTest.suite
+    suite << ConnectionTest.suite
     suite << OnlineTest.suite
   end
 end
