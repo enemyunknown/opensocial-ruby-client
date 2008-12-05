@@ -21,8 +21,8 @@ module OpenSocial #:nodoc:
   
   # Provides verification of signed makeRequest using OAuth with HMAC-SHA1.
   #  class ExampleController < ApplicationController
-  #    CONSUMER_KEY = '623061448914'
-  #    CONSUMER_SECRET = 'uynAeXiWTisflWX99KU1D2q5'
+  #    OpenSocial::Auth::CONSUMER_KEY = '623061448914'
+  #    OpenSocial::Auth::CONSUMER_SECRET = 'uynAeXiWTisflWX99KU1D2q5'
   #   
   #    include OpenSocial::Auth
   #   
@@ -35,8 +35,8 @@ module OpenSocial #:nodoc:
   
   
   module Auth
-    def validate
-      consumer = OAuth::Consumer.new(CONSUMER_KEY, CONSUMER_SECRET)
+    def validate(key = CONSUMER_KEY, secret = CONSUMER_SECRET)
+      consumer = OAuth::Consumer.new(key, secret)
       begin
         signature = OAuth::Signature.build(request) do
           [nil, consumer.secret]
