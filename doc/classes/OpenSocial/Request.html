@@ -103,8 +103,8 @@ contains appropriate credentials.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000017">new</a>&nbsp;&nbsp;
-      <a href="#M000018">send_request</a>&nbsp;&nbsp;
+      <a href="#M000018">new</a>&nbsp;&nbsp;
+      <a href="#M000019">send_request</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -140,27 +140,42 @@ contains appropriate credentials.
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">connection</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the connection that will be used in the request.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">guid</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the guid for the request.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">key</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the key used to lookup the request result in an RPC request.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">pid</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the pid for the request.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">selector</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the selector for the request.
+
+</td>
         </tr>
         </table>
       </div>
@@ -172,33 +187,43 @@ contains appropriate credentials.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000017" class="method-detail">
-        <a name="M000017"></a>
-
-        <div class="method-heading">
-          <a href="Request.src/M000017.html" target="Code" class="method-signature"
-            onclick="popupCode('Request.src/M000017.html');return false;">
-          <span class="method-name">new</span><span class="method-args">(connection = nil, guid = nil, selector = nil, pid = nil)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
-      <h3 class="section-bar">Public Instance methods</h3>
-
       <div id="method-M000018" class="method-detail">
         <a name="M000018"></a>
 
         <div class="method-heading">
           <a href="Request.src/M000018.html" target="Code" class="method-signature"
             onclick="popupCode('Request.src/M000018.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(connection = nil, guid = nil, selector = nil, pid = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initializes a request using the optionally supplied connection, guid,
+selector, and pid.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="Request.src/M000019.html" target="Code" class="method-signature"
+            onclick="popupCode('Request.src/M000019.html');return false;">
           <span class="method-name">send_request</span><span class="method-args">(service, guid, selector = nil, pid = nil, unescape = false)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Generates a request given the service, guid, selector, and pid, to the
+OpenSocial endpoint by constructing the service URI and dispatching the
+request. When data is returned, it is parsed as JSON after being optionally
+unescaped.
+</p>
         </div>
       </div>
 

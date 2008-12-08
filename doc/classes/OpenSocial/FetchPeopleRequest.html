@@ -82,14 +82,14 @@
 
     <div id="description">
       <p>
-Provides the ability to request a collection of people by describing their
-relationship to a single person.
+Provides the ability to request a <a href="Collection.html">Collection</a>
+of people by describing their relationship to a single person.
 </p>
 <pre>
  The FetchPeopleRequests wraps a simple request to an OpenSocial
- endpoint for a collection of people. As parameters, it accepts
+ endpoint for a Collection of people. As parameters, it accepts
  a user ID and selector. This request may be used, standalone, by calling
- send, or bundled into an RPC request.
+ send, or bundled into an RpcRequest.
 </pre>
 
     </div>
@@ -101,10 +101,10 @@ relationship to a single person.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000012">new</a>&nbsp;&nbsp;
-      <a href="#M000014">parse_rpc_response</a>&nbsp;&nbsp;
-      <a href="#M000013">send</a>&nbsp;&nbsp;
-      <a href="#M000015">to_json</a>&nbsp;&nbsp;
+      <a href="#M000013">new</a>&nbsp;&nbsp;
+      <a href="#M000015">parse_rpc_response</a>&nbsp;&nbsp;
+      <a href="#M000014">send</a>&nbsp;&nbsp;
+      <a href="#M000016">to_json</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -125,6 +125,12 @@ relationship to a single person.
           <td class="context-item-name">SERVICE</td>
           <td>=</td>
           <td class="context-item-value">'people'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Defines the service fragment for use in constructing the request URL or
+JSON
+
+</td>
         </tr>
         </table>
       </div>
@@ -139,49 +145,27 @@ relationship to a single person.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000012" class="method-detail">
-        <a name="M000012"></a>
-
-        <div class="method-heading">
-          <a href="FetchPeopleRequest.src/M000012.html" target="Code" class="method-signature"
-            onclick="popupCode('FetchPeopleRequest.src/M000012.html');return false;">
-          <span class="method-name">new</span><span class="method-args">(connection = nil, guid = '@me', selector = '@friends')</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
-      <h3 class="section-bar">Public Instance methods</h3>
-
-      <div id="method-M000014" class="method-detail">
-        <a name="M000014"></a>
-
-        <div class="method-heading">
-          <a href="FetchPeopleRequest.src/M000014.html" target="Code" class="method-signature"
-            onclick="popupCode('FetchPeopleRequest.src/M000014.html');return false;">
-          <span class="method-name">parse_rpc_response</span><span class="method-args">(response)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
       <div id="method-M000013" class="method-detail">
         <a name="M000013"></a>
 
         <div class="method-heading">
           <a href="FetchPeopleRequest.src/M000013.html" target="Code" class="method-signature"
             onclick="popupCode('FetchPeopleRequest.src/M000013.html');return false;">
-          <span class="method-name">send</span><span class="method-args">()</span>
+          <span class="method-name">new</span><span class="method-args">(connection = nil, guid = '@me', selector = '@friends')</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Initializes a request to the specified user&#8216;s group, or the default
+(@me, @friends). A valid <a href="Connection.html">Connection</a> is not
+necessary if the request is to be used as part of an <a
+href="RpcRequest.html">RpcRequest</a>.
+</p>
         </div>
       </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
 
       <div id="method-M000015" class="method-detail">
         <a name="M000015"></a>
@@ -189,11 +173,51 @@ relationship to a single person.
         <div class="method-heading">
           <a href="FetchPeopleRequest.src/M000015.html" target="Code" class="method-signature"
             onclick="popupCode('FetchPeopleRequest.src/M000015.html');return false;">
+          <span class="method-name">parse_rpc_response</span><span class="method-args">(response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Selects the appropriate fragment from the JSON response in order to create
+a native object.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="FetchPeopleRequest.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('FetchPeopleRequest.src/M000014.html');return false;">
+          <span class="method-name">send</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sends the request, passing in the appropriate SERVICE and specified
+instance variables.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <a href="FetchPeopleRequest.src/M000016.html" target="Code" class="method-signature"
+            onclick="popupCode('FetchPeopleRequest.src/M000016.html');return false;">
           <span class="method-name">to_json</span><span class="method-args">(*a)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Converts the request into a JSON fragment that can be used as part of a
+larger RPC request.
+</p>
         </div>
       </div>
 

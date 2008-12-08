@@ -82,15 +82,16 @@
 
     <div id="description">
       <p>
-Provides the ability to request a collection of appdata for a given user or
-set of users.
+Provides the ability to request a <a href="Collection.html">Collection</a>
+of <a href="AppData.html">AppData</a> for a given user or set of users.
 </p>
 <p>
-The FetchAppData wraps a simple request to an OpenSocial endpoint for a
-collection of appdata. As parameters, it accepts a user ID and selector.
-This request may be used, standalone, by calling <a
-href="FetchAppDataRequest.html#M000023">send</a>, or bundled into an RPC
-request.
+The FetchAppData wraps a simple request to an OpenSocial endpoint for a <a
+href="Collection.html">Collection</a> of <a
+href="AppData.html">AppData</a>. As parameters, it accepts a user ID and
+selector. This request may be used, standalone, by calling <a
+href="FetchAppDataRequest.html#M000024">send</a>, or bundled into an <a
+href="RpcRequest.html">RpcRequest</a>.
 </p>
 
     </div>
@@ -102,10 +103,10 @@ request.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000022">new</a>&nbsp;&nbsp;
-      <a href="#M000024">parse_rpc_response</a>&nbsp;&nbsp;
-      <a href="#M000023">send</a>&nbsp;&nbsp;
-      <a href="#M000025">to_json</a>&nbsp;&nbsp;
+      <a href="#M000023">new</a>&nbsp;&nbsp;
+      <a href="#M000025">parse_rpc_response</a>&nbsp;&nbsp;
+      <a href="#M000024">send</a>&nbsp;&nbsp;
+      <a href="#M000026">to_json</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -126,6 +127,12 @@ request.
           <td class="context-item-name">SERVICE</td>
           <td>=</td>
           <td class="context-item-value">'appdata'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Defines the service fragment for use in constructing the request URL or
+JSON
+
+</td>
         </tr>
         </table>
       </div>
@@ -140,49 +147,27 @@ request.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000022" class="method-detail">
-        <a name="M000022"></a>
-
-        <div class="method-heading">
-          <a href="FetchAppDataRequest.src/M000022.html" target="Code" class="method-signature"
-            onclick="popupCode('FetchAppDataRequest.src/M000022.html');return false;">
-          <span class="method-name">new</span><span class="method-args">(connection = nil, guid = '@me', selector = '@self', aid = '@app')</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
-      <h3 class="section-bar">Public Instance methods</h3>
-
-      <div id="method-M000024" class="method-detail">
-        <a name="M000024"></a>
-
-        <div class="method-heading">
-          <a href="FetchAppDataRequest.src/M000024.html" target="Code" class="method-signature"
-            onclick="popupCode('FetchAppDataRequest.src/M000024.html');return false;">
-          <span class="method-name">parse_rpc_response</span><span class="method-args">(response)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
       <div id="method-M000023" class="method-detail">
         <a name="M000023"></a>
 
         <div class="method-heading">
           <a href="FetchAppDataRequest.src/M000023.html" target="Code" class="method-signature"
             onclick="popupCode('FetchAppDataRequest.src/M000023.html');return false;">
-          <span class="method-name">send</span><span class="method-args">(unescape = true)</span>
+          <span class="method-name">new</span><span class="method-args">(connection = nil, guid = '@me', selector = '@self', aid = '@app')</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Initializes a request to fetch appdata for the specified user and group, or
+the default (@me, @self). A valid <a href="Connection.html">Connection</a>
+is not necessary if the request is to be used as part of an <a
+href="RpcRequest.html">RpcRequest</a>.
+</p>
         </div>
       </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
 
       <div id="method-M000025" class="method-detail">
         <a name="M000025"></a>
@@ -190,11 +175,52 @@ request.
         <div class="method-heading">
           <a href="FetchAppDataRequest.src/M000025.html" target="Code" class="method-signature"
             onclick="popupCode('FetchAppDataRequest.src/M000025.html');return false;">
+          <span class="method-name">parse_rpc_response</span><span class="method-args">(response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Selects the appropriate fragment from the JSON response in order to create
+a native object.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000024" class="method-detail">
+        <a name="M000024"></a>
+
+        <div class="method-heading">
+          <a href="FetchAppDataRequest.src/M000024.html" target="Code" class="method-signature"
+            onclick="popupCode('FetchAppDataRequest.src/M000024.html');return false;">
+          <span class="method-name">send</span><span class="method-args">(unescape = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sends the request, passing in the appropriate SERVICE and specified
+instance variables. Accepts an unescape parameter, defaulting to true, if
+the returned data should be unescaped.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000026" class="method-detail">
+        <a name="M000026"></a>
+
+        <div class="method-heading">
+          <a href="FetchAppDataRequest.src/M000026.html" target="Code" class="method-signature"
+            onclick="popupCode('FetchAppDataRequest.src/M000026.html');return false;">
           <span class="method-name">to_json</span><span class="method-args">(*a)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Converts the request into a JSON fragment that can be used as part of a
+larger <a href="RpcRequest.html">RpcRequest</a>.
+</p>
         </div>
       </div>
 

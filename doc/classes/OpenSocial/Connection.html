@@ -93,8 +93,8 @@ declare an authorization mechanism and appropriate credentials.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000019">new</a>&nbsp;&nbsp;
-      <a href="#M000020">service_uri</a>&nbsp;&nbsp;
+      <a href="#M000020">new</a>&nbsp;&nbsp;
+      <a href="#M000021">service_uri</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -155,37 +155,60 @@ declare an authorization mechanism and appropriate credentials.
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">auth</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the authentication scheme: HMAC or security token.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">consumer_key</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the consumer key for <a href="../OAuth.html">OAuth</a>.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">consumer_secret</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the consumer secret for <a href="../OAuth.html">OAuth</a>.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">consumer_token</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the consumer token for <a href="../OAuth.html">OAuth</a>.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">container</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the container that will be used in requests.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">st</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the security token, for when <a href="../OAuth.html">OAuth</a> is
+not in use.
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">xoauth_requestor_id</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the ID of the requestor (required by some implementations when
+using <a href="../OAuth.html">OAuth</a>).
+
+</td>
         </tr>
         </table>
       </div>
@@ -197,33 +220,43 @@ declare an authorization mechanism and appropriate credentials.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000019" class="method-detail">
-        <a name="M000019"></a>
-
-        <div class="method-heading">
-          <a href="Connection.src/M000019.html" target="Code" class="method-signature"
-            onclick="popupCode('Connection.src/M000019.html');return false;">
-          <span class="method-name">new</span><span class="method-args">(options = {})</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
-      <h3 class="section-bar">Public Instance methods</h3>
-
       <div id="method-M000020" class="method-detail">
         <a name="M000020"></a>
 
         <div class="method-heading">
           <a href="Connection.src/M000020.html" target="Code" class="method-signature"
             onclick="popupCode('Connection.src/M000020.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initializes the <a href="Connection.html">Connection</a> using the supplied
+options hash, or the defaults. Verifies that the supplied authentication
+type has proper (ie. non-blank) credentials, and that the authentication
+type is known.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="Connection.src/M000021.html" target="Code" class="method-signature"
+            onclick="popupCode('Connection.src/M000021.html');return false;">
           <span class="method-name">service_uri</span><span class="method-args">(service, guid, selector, pid)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Constructs a URI to the OpenSocial endpoint given a service, guid,
+selector, and pid.
+</p>
         </div>
       </div>
 

@@ -5,14 +5,16 @@
 
 <html>
 <head>
-  <title>add (OpenSocial::RpcRequest)</title>
+  <title>new (OpenSocial::RpcRequest)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/opensocial/request.rb, line 140</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add</span>(<span class="ruby-identifier">requests</span> = {})
-      <span class="ruby-ivar">@requests</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">requests</span>)
+  <pre><span class="ruby-comment cmt"># File lib/opensocial/request.rb, line 162</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">connection</span>, <span class="ruby-identifier">requests</span> = {})
+      <span class="ruby-ivar">@connection</span> = <span class="ruby-identifier">connection</span>
+      
+      <span class="ruby-ivar">@requests</span> = <span class="ruby-identifier">requests</span>
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

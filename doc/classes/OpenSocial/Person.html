@@ -101,8 +101,9 @@ attr_accessor, either as a String, Fixnum, Hash, or Array.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000007">display_name</a>&nbsp;&nbsp;
+      <a href="#M000007">long_name</a>&nbsp;&nbsp;
       <a href="#M000006">new</a>&nbsp;&nbsp;
+      <a href="#M000008">short_name</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -135,6 +136,11 @@ attr_accessor, either as a String, Fixnum, Hash, or Array.
         </div>
       
         <div class="method-description">
+          <p>
+Initializes the <a href="Person.html">Person</a> based on the provided json
+fragment. If no JSON is provided, an empty object (with no attributes) is
+created.
+</p>
         </div>
       </div>
 
@@ -146,11 +152,33 @@ attr_accessor, either as a String, Fixnum, Hash, or Array.
         <div class="method-heading">
           <a href="Person.src/M000007.html" target="Code" class="method-signature"
             onclick="popupCode('Person.src/M000007.html');return false;">
-          <span class="method-name">display_name</span><span class="method-args">()</span>
+          <span class="method-name">long_name</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Returns the complete name of the <a href="Person.html">Person</a>, to the
+best ability, given available fields.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="Person.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('Person.src/M000008.html');return false;">
+          <span class="method-name">short_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the first name or nickname of the <a href="Person.html">Person</a>,
+to the best ability, given available fields.
+</p>
         </div>
       </div>
 

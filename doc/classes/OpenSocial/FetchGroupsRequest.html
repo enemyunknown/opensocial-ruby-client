@@ -82,14 +82,15 @@
 
     <div id="description">
       <p>
-Provides the ability to request a collection of groups for a given user.
+Provides the ability to request a <a href="Collection.html">Collection</a>
+of groups for a given user.
 </p>
 <p>
 The <a href="FetchGroupsRequest.html">FetchGroupsRequest</a> wraps a simple
 request to an OpenSocial endpoint for a collection of groups. As
 parameters, it accepts a user ID. This request may be used, standalone, by
 calling <a href="FetchGroupsRequest.html#M000004">send</a>, or bundled into
-an RPC request.
+an <a href="RpcRequest.html">RpcRequest</a>.
 </p>
 
     </div>
@@ -123,6 +124,12 @@ an RPC request.
           <td class="context-item-name">SERVICE</td>
           <td>=</td>
           <td class="context-item-value">'groups'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Defines the service fragment for use in constructing the request URL or
+JSON
+
+</td>
         </tr>
         </table>
       </div>
@@ -148,6 +155,12 @@ an RPC request.
         </div>
       
         <div class="method-description">
+          <p>
+Initializes a request to fetch groups for the specified user, or the
+default (@me). A valid <a href="Connection.html">Connection</a> is not
+necessary if the request is to be used as part of an <a
+href="RpcRequest.html">RpcRequest</a>.
+</p>
         </div>
       </div>
 
@@ -164,6 +177,10 @@ an RPC request.
         </div>
       
         <div class="method-description">
+          <p>
+Sends the request, passing in the appropriate SERVICE and specified
+instance variables.
+</p>
         </div>
       </div>
 

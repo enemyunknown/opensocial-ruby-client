@@ -5,23 +5,14 @@
 
 <html>
 <head>
-  <title>to_json (OpenSocial::FetchAppDataRequest)</title>
+  <title>parse_rpc_response (OpenSocial::FetchAppDataRequest)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/opensocial/appdata.rb, line 74</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>)
-      <span class="ruby-identifier">value</span> = {
-        <span class="ruby-value str">'method'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">SERVICE</span> <span class="ruby-operator">+</span> <span class="ruby-constant">GET</span>,
-        <span class="ruby-value str">'params'</span> =<span class="ruby-operator">&gt;</span> {
-          <span class="ruby-value str">'userId'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-node">&quot;#{@guid}&quot;</span>],
-          <span class="ruby-value str">'groupId'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@selector}&quot;</span>,
-          <span class="ruby-value str">'appId'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{@pid}&quot;</span>,
-          <span class="ruby-value str">'fields'</span> =<span class="ruby-operator">&gt;</span> []
-        },
-        <span class="ruby-value str">'id'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@key</span>
-      }.<span class="ruby-identifier">to_json</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>)
+  <pre><span class="ruby-comment cmt"># File lib/opensocial/appdata.rb, line 84</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_rpc_response</span>(<span class="ruby-identifier">response</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">parse_response</span>(<span class="ruby-identifier">response</span>[<span class="ruby-value str">'data'</span>])
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

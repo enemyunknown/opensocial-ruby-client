@@ -79,8 +79,8 @@ href="../OAuth.html">OAuth</a> with HMAC-SHA1.
 </p>
 <pre>
  class ExampleController &lt; ApplicationController
-   CONSUMER_KEY = '623061448914'
-   CONSUMER_SECRET = 'uynAeXiWTisflWX99KU1D2q5'
+   OpenSocial::Auth::CONSUMER_KEY = '623061448914'
+   OpenSocial::Auth::CONSUMER_SECRET = 'uynAeXiWTisflWX99KU1D2q5'
 
    include OpenSocial::Auth
 
@@ -128,11 +128,15 @@ href="../OAuth.html">OAuth</a> with HMAC-SHA1.
         <div class="method-heading">
           <a href="Auth.src/M000001.html" target="Code" class="method-signature"
             onclick="popupCode('Auth.src/M000001.html');return false;">
-          <span class="method-name">validate</span><span class="method-args">()</span>
+          <span class="method-name">validate</span><span class="method-args">(key = CONSUMER_KEY, secret = CONSUMER_SECRET)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Validates an incoming request by using the <a
+href="../OAuth.html">OAuth</a> library and the supplied key and secret.
+</p>
         </div>
       </div>
 

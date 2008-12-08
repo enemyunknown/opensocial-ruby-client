@@ -82,16 +82,17 @@
 
     <div id="description">
       <p>
-Provides the ability to request a collection of activities for a given user
-or set of users.
+Provides the ability to request a <a href="Collection.html">Collection</a>
+of activities for a given user or set of users.
 </p>
 <p>
 The <a href="FetchActivitiesRequest.html">FetchActivitiesRequest</a> wraps
-a simple request to an OpenSocial endpoint for a collection of activities.
-As parameters, it accepts a user ID and selector (and optionally an ID of a
-particular activity). This request may be used, standalone, by calling <a
-href="FetchActivitiesRequest.html#M000027">send</a>, or bundled into an RPC
-request.
+a simple request to an OpenSocial endpoint for a <a
+href="Collection.html">Collection</a> of activities. As parameters, it
+accepts a user ID and selector (and optionally an ID of a particular
+activity). This request may be used, standalone, by calling <a
+href="FetchActivitiesRequest.html#M000028">send</a>, or bundled into an <a
+href="RpcRequest.html">RpcRequest</a>.
 </p>
 
     </div>
@@ -103,10 +104,10 @@ request.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000026">new</a>&nbsp;&nbsp;
-      <a href="#M000028">parse_rpc_response</a>&nbsp;&nbsp;
-      <a href="#M000027">send</a>&nbsp;&nbsp;
-      <a href="#M000029">to_json</a>&nbsp;&nbsp;
+      <a href="#M000027">new</a>&nbsp;&nbsp;
+      <a href="#M000029">parse_rpc_response</a>&nbsp;&nbsp;
+      <a href="#M000028">send</a>&nbsp;&nbsp;
+      <a href="#M000030">to_json</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -127,6 +128,12 @@ request.
           <td class="context-item-name">SERVICE</td>
           <td>=</td>
           <td class="context-item-value">'activities'</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Defines the service fragment for use in constructing the request URL or
+JSON
+
+</td>
         </tr>
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">RPC_SERVICE</td>
@@ -151,49 +158,27 @@ This is only necessary because of a spec inconsistency
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000026" class="method-detail">
-        <a name="M000026"></a>
-
-        <div class="method-heading">
-          <a href="FetchActivitiesRequest.src/M000026.html" target="Code" class="method-signature"
-            onclick="popupCode('FetchActivitiesRequest.src/M000026.html');return false;">
-          <span class="method-name">new</span><span class="method-args">(connection = nil, guid = '@me', selector = '@self', pid = nil)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
-      <h3 class="section-bar">Public Instance methods</h3>
-
-      <div id="method-M000028" class="method-detail">
-        <a name="M000028"></a>
-
-        <div class="method-heading">
-          <a href="FetchActivitiesRequest.src/M000028.html" target="Code" class="method-signature"
-            onclick="popupCode('FetchActivitiesRequest.src/M000028.html');return false;">
-          <span class="method-name">parse_rpc_response</span><span class="method-args">(response)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
       <div id="method-M000027" class="method-detail">
         <a name="M000027"></a>
 
         <div class="method-heading">
           <a href="FetchActivitiesRequest.src/M000027.html" target="Code" class="method-signature"
             onclick="popupCode('FetchActivitiesRequest.src/M000027.html');return false;">
-          <span class="method-name">send</span><span class="method-args">()</span>
+          <span class="method-name">new</span><span class="method-args">(connection = nil, guid = '@me', selector = '@self', pid = nil)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Initializes a request to fetch activities for the specified user and group,
+or the default (@me, @self). A valid <a
+href="Connection.html">Connection</a> is not necessary if the request is to
+be used as part of an <a href="RpcRequest.html">RpcRequest</a>.
+</p>
         </div>
       </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
 
       <div id="method-M000029" class="method-detail">
         <a name="M000029"></a>
@@ -201,11 +186,51 @@ This is only necessary because of a spec inconsistency
         <div class="method-heading">
           <a href="FetchActivitiesRequest.src/M000029.html" target="Code" class="method-signature"
             onclick="popupCode('FetchActivitiesRequest.src/M000029.html');return false;">
+          <span class="method-name">parse_rpc_response</span><span class="method-args">(response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Selects the appropriate fragment from the JSON response in order to create
+a native object.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000028" class="method-detail">
+        <a name="M000028"></a>
+
+        <div class="method-heading">
+          <a href="FetchActivitiesRequest.src/M000028.html" target="Code" class="method-signature"
+            onclick="popupCode('FetchActivitiesRequest.src/M000028.html');return false;">
+          <span class="method-name">send</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sends the request, passing in the appropriate SERVICE and specified
+instance variables.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000030" class="method-detail">
+        <a name="M000030"></a>
+
+        <div class="method-heading">
+          <a href="FetchActivitiesRequest.src/M000030.html" target="Code" class="method-signature"
+            onclick="popupCode('FetchActivitiesRequest.src/M000030.html');return false;">
           <span class="method-name">to_json</span><span class="method-args">(*a)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Converts the request into a JSON fragment that can be used as part of a
+larger <a href="RpcRequest.html">RpcRequest</a>.
+</p>
         </div>
       </div>
 

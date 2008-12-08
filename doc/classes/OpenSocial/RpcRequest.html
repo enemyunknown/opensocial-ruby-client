@@ -106,10 +106,10 @@ href="../OAuth.html">OAuth</a> credentials are supplied.
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000032">add</a>&nbsp;&nbsp;
-      <a href="#M000031">new</a>&nbsp;&nbsp;
-      <a href="#M000033">send</a>&nbsp;&nbsp;
-      <a href="#M000034">send_request</a>&nbsp;&nbsp;
+      <a href="#M000033">add</a>&nbsp;&nbsp;
+      <a href="#M000032">new</a>&nbsp;&nbsp;
+      <a href="#M000034">send</a>&nbsp;&nbsp;
+      <a href="#M000035">send_request</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -132,7 +132,12 @@ href="../OAuth.html">OAuth</a> credentials are supplied.
         <tr class="top-aligned-row context-row">
           <td class="context-item-name">requests</td>
           <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
-          <td class="context-item-desc"></td>
+          <td class="context-item-desc">
+Defines the requests sent in the single <a
+href="RpcRequest.html">RpcRequest</a>. The requests are stored a key/value
+pairs.
+
+</td>
         </tr>
         </table>
       </div>
@@ -144,35 +149,25 @@ href="../OAuth.html">OAuth</a> credentials are supplied.
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000031" class="method-detail">
-        <a name="M000031"></a>
-
-        <div class="method-heading">
-          <a href="RpcRequest.src/M000031.html" target="Code" class="method-signature"
-            onclick="popupCode('RpcRequest.src/M000031.html');return false;">
-          <span class="method-name">new</span><span class="method-args">(connection, requests = {})</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-        </div>
-      </div>
-
-      <h3 class="section-bar">Public Instance methods</h3>
-
       <div id="method-M000032" class="method-detail">
         <a name="M000032"></a>
 
         <div class="method-heading">
           <a href="RpcRequest.src/M000032.html" target="Code" class="method-signature"
             onclick="popupCode('RpcRequest.src/M000032.html');return false;">
-          <span class="method-name">add</span><span class="method-args">(requests = {})</span>
+          <span class="method-name">new</span><span class="method-args">(connection, requests = {})</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Initializes an <a href="RpcRequest.html">RpcRequest</a> with the supplied
+connection and an optional hash of requests.
+</p>
         </div>
       </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
 
       <div id="method-M000033" class="method-detail">
         <a name="M000033"></a>
@@ -180,11 +175,16 @@ href="../OAuth.html">OAuth</a> credentials are supplied.
         <div class="method-heading">
           <a href="RpcRequest.src/M000033.html" target="Code" class="method-signature"
             onclick="popupCode('RpcRequest.src/M000033.html');return false;">
-          <span class="method-name">send</span><span class="method-args">(unescape = true)</span>
+          <span class="method-name">add</span><span class="method-args">(requests = {})</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Adds one or more requests to the <a href="RpcRequest.html">RpcRequest</a>.
+Expects a hash of key/value pairs (key used to refernece the data when it
+returns =&gt; the <a href="Request.html">Request</a>).
+</p>
         </div>
       </div>
 
@@ -194,11 +194,39 @@ href="../OAuth.html">OAuth</a> credentials are supplied.
         <div class="method-heading">
           <a href="RpcRequest.src/M000034.html" target="Code" class="method-signature"
             onclick="popupCode('RpcRequest.src/M000034.html');return false;">
+          <span class="method-name">send</span><span class="method-args">(unescape = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sends an <a href="RpcRequest.html">RpcRequest</a> to the OpenSocial
+endpoint by constructing JSON for the POST body and delegating the request
+to <a href="RpcRequest.html#M000035">send_request</a>. If an <a
+href="RpcRequest.html">RpcRequest</a> is sent with an empty list of
+requests, an exception is thrown. The response JSON is optionally unescaped
+(defaulting to true).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
+
+        <div class="method-heading">
+          <a href="RpcRequest.src/M000035.html" target="Code" class="method-signature"
+            onclick="popupCode('RpcRequest.src/M000035.html');return false;">
           <span class="method-name">send_request</span><span class="method-args">(post_data, unescape)</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Sends an <a href="RpcRequest.html">RpcRequest</a> to the OpenSocial
+endpoint by constructing the service URI and dispatching the request. This
+method is public so that an arbitrary POST body can be constructed and
+sent. The response JSON is optionally unescaped.
+</p>
         </div>
       </div>
 

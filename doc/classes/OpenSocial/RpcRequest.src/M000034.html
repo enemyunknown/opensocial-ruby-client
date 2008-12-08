@@ -5,17 +5,19 @@
 
 <html>
 <head>
-  <title>send_request (OpenSocial::RpcRequest)</title>
+  <title>send (OpenSocial::RpcRequest)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/opensocial/request.rb, line 153</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">post_data</span>, <span class="ruby-identifier">unescape</span>)
-      <span class="ruby-identifier">uri</span> = <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">service_uri</span>(<span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">container</span>[<span class="ruby-identifier">:rpc</span>], <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>)
-      <span class="ruby-identifier">data</span> = <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">post_data</span>)
-
-      <span class="ruby-identifier">parse_response</span>(<span class="ruby-identifier">data</span>, <span class="ruby-identifier">unescape</span>)
+  <pre><span class="ruby-comment cmt"># File lib/opensocial/request.rb, line 178</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">unescape</span> = <span class="ruby-keyword kw">true</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@requests</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestException</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">'RPC request requires a non-empty hash '</span> <span class="ruby-operator">+</span>
+                                   <span class="ruby-value str">'of requests in order to be sent.'</span>)
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">json</span> = <span class="ruby-identifier">send_request</span>(<span class="ruby-identifier">request_json</span>, <span class="ruby-identifier">unescape</span>)
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

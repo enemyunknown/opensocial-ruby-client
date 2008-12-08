@@ -10,15 +10,17 @@
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/opensocial/activity.rb, line 29</span>
+  <pre><span class="ruby-comment cmt"># File lib/opensocial/activity.rb, line 32</span>
     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">json</span>)
-      <span class="ruby-identifier">json</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">proper_key</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">snake_case</span>
-        <span class="ruby-keyword kw">begin</span>
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{proper_key}=&quot;</span>, <span class="ruby-identifier">value</span>)
-        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NoMethodError</span>
-          <span class="ruby-identifier">add_attr</span>(<span class="ruby-identifier">proper_key</span>)
-          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{proper_key}=&quot;</span>, <span class="ruby-identifier">value</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">json</span>
+        <span class="ruby-identifier">json</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">proper_key</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">snake_case</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{proper_key}=&quot;</span>, <span class="ruby-identifier">value</span>)
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NoMethodError</span>
+            <span class="ruby-identifier">add_attr</span>(<span class="ruby-identifier">proper_key</span>)
+            <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{proper_key}=&quot;</span>, <span class="ruby-identifier">value</span>)
+          <span class="ruby-keyword kw">end</span>
         <span class="ruby-keyword kw">end</span>
       <span class="ruby-keyword kw">end</span>
     <span class="ruby-keyword kw">end</span></pre>
