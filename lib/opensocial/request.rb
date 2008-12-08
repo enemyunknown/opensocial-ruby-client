@@ -33,9 +33,14 @@ module OpenSocial #:nodoc:
     # Defines the connection that will be used in the request.
     attr_accessor :connection
     
-    # Defines the guid, selector, and pid that specify which data is being
-    # requested.
-    attr_accessor :guid, :selector, :pid
+    # Defines the guid for the request.
+    attr_accessor :guid
+    
+    # Defines the selector for the request.
+    attr_accessor :selector
+    
+    # Defines the pid for the request.
+    attr_accessor :pid
     
     # Defines the key used to lookup the request result in an RPC request.
     attr_accessor :key

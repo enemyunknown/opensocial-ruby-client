@@ -45,7 +45,8 @@ module OpenSocial #:nodoc:
   
   class Collection < Hash
     
-    # Converts the Collection to an Array by 
+    # Converts the Collection to an Array by returning each of the values from
+    # key/value pairs.
     def to_array
       values
     end

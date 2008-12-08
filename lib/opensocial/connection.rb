@@ -50,8 +50,14 @@ module OpenSocial #:nodoc:
     # Defines the security token, for when OAuth is not in use.
     attr_accessor :st
     
-    # Defines the consumer key, secret, and token for OAuth.
-    attr_accessor :consumer_key, :consumer_secret, :consumer_token
+    # Defines the consumer key for OAuth.
+    attr_accessor :consumer_key
+    
+    # Defines the consumer secret for OAuth.
+    attr_accessor :consumer_secret
+    
+    # Defines the consumer token for OAuth.
+    attr_accessor :consumer_token
     
     # Defines the ID of the requestor (required by some implementations when
     # using OAuth).

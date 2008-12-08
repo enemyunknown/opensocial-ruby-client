@@ -35,6 +35,9 @@ module OpenSocial #:nodoc:
   
   
   module Auth
+    
+    # Validates an incoming request by using the OAuth library and the supplied
+    # key and secret.
     def validate(key = CONSUMER_KEY, secret = CONSUMER_SECRET)
       consumer = OAuth::Consumer.new(key, secret)
       begin
