@@ -29,6 +29,8 @@ module OpenSocial #:nodoc:
   
   
   class Base
+    
+    # Creates an attr_accessor for the specified variable name.
     def add_attr(name)
       self.class.class_eval "attr_accessor :#{name}"
     end
@@ -42,6 +44,8 @@ module OpenSocial #:nodoc:
   
   
   class Collection < Hash
+    
+    # Converts the Collection to an Array by 
     def to_array
       values
     end

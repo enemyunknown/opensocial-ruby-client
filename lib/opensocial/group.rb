@@ -24,7 +24,11 @@ module OpenSocial #:nodoc:
   # String, Fixnum, Hash, or Array.
   #
   
+  
   class Group < Base
+    
+    # Initializes the Group based on the provided json fragment. If no JSON
+    # is provided, an empty object (with no attributes) is created.
     def initialize(json)
       if json
         json.each do |key, value|
@@ -40,23 +44,30 @@ module OpenSocial #:nodoc:
     end
   end
   
-  # Provides the ability to request a collection of groups for a given
+  # Provides the ability to request a Collection of groups for a given
   # user.
   #
   # The FetchGroupsRequest wraps a simple request to an OpenSocial
   # endpoint for a collection of groups. As parameters, it accepts
   # a user ID. This request may be used, standalone, by calling send, or
-  # bundled into an RPC request.
+  # bundled into an RpcRequest.
   #
   
   
   class FetchGroupsRequest < Request
+    # Defines the service fragment for use in constructing the request URL or
+    # JSON
     SERVICE = 'groups'
     
+    # Initializes a request to fetch groups for the specified user, or the
+    # default (@me). A valid Connection is not necessary if the request is to
+    # be used as part of an RpcRequest.
     def initialize(connection = nil, guid = '@me')
       super
     end
     
+    # Sends the request, passing in the appropriate SERVICE and specified
+    # instance variables.
     def send
       json = send_request(SERVICE, @guid)
       

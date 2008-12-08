@@ -44,12 +44,25 @@ module OpenSocial #:nodoc:
                         :xoauth_requestor_id => '',
                         :auth => AUTH_HMAC }
     
+    # Defines the container that will be used in requests.
     attr_accessor :container
+    
+    # Defines the security token, for when OAuth is not in use.
     attr_accessor :st
+    
+    # Defines the consumer key, secret, and token for OAuth.
     attr_accessor :consumer_key, :consumer_secret, :consumer_token
+    
+    # Defines the ID of the requestor (required by some implementations when
+    # using OAuth).
     attr_accessor :xoauth_requestor_id
+    
+    # Defines the authentication scheme: HMAC or security token.
     attr_accessor :auth
     
+    # Initializes the Connection using the supplied options hash, or the
+    # defaults. Verifies that the supplied authentication type has proper
+    # (ie. non-blank) credentials, and that the authentication type is known.
     def initialize(options = {})
       options = DEFAULT_OPTIONS.merge(options)
       options.each do |key, value|
@@ -71,6 +84,8 @@ module OpenSocial #:nodoc:
       end
     end
     
+    # Constructs a URI to the OpenSocial endpoint given a service, guid,
+    # selector, and pid.
     def service_uri(service, guid, selector, pid)
       uri = [@container[:endpoint], service, guid, selector, pid].compact.
               join('/')
@@ -85,6 +100,8 @@ module OpenSocial #:nodoc:
     
     private
     
+    # Verifies that the consumer key, consumer secret and requestor id are all
+    # non-blank.
     def has_valid_hmac_triple?
       return (!@consumer_key.empty? && !@consumer_secret.empty? &&
               !@xoauth_requestor_id.empty?)

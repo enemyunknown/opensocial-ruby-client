@@ -30,11 +30,18 @@ module OpenSocial #:nodoc:
   class Request
     GET = '.get'
     
+    # Defines the connection that will be used in the request.
     attr_accessor :connection
+    
+    # Defines the guid, selector, and pid that specify which data is being
+    # requested.
     attr_accessor :guid, :selector, :pid
     
+    # Defines the key used to lookup the request result in an RPC request.
     attr_accessor :key
     
+    # Initializes a request using the optionally supplied connection, guid,
+    # selector, and pid.
     def initialize(connection = nil, guid = nil, selector = nil, pid = nil)
       @connection = connection
       @guid = guid
@@ -42,6 +49,10 @@ module OpenSocial #:nodoc:
       @pid = pid
     end
     
+    # Generates a request given the service, guid, selector, and pid, to the
+    # OpenSocial endpoint by constructing the service URI and dispatching the
+    # request. When data is returned, it is parsed as JSON after being
+    # optionally unescaped.
     def send_request(service, guid, selector = nil, pid = nil,
                      unescape = false)
       if !@connection
@@ -61,6 +72,9 @@ module OpenSocial #:nodoc:
     
     private
     
+    # Dispatches a request to a given URI with optional POST data. If a
+    # request's connection has specified HMAC-SHA1 authentication, OAuth
+    # parameters and signature are appended to the request.
     def dispatch(uri, post_data = nil)
       http = Net::HTTP.new(uri.host) 
       
@@ -89,6 +103,8 @@ module OpenSocial #:nodoc:
       return resp.body
     end
     
+    # Checks the response object's status code. If the response is is
+    # unauthorized, an exception is raised.
     def check_for_http_error!(resp)
       if !resp.kind_of?(Net::HTTPSuccess)
         if resp.is_a?(Net::HTTPUnauthorized)
@@ -100,6 +116,8 @@ module OpenSocial #:nodoc:
       end
     end
     
+    # Checks the JSON response for a status code. If a code is present an
+    # exception is raised.
     def check_for_json_error!(resp)
       json = JSON.parse(resp.body)
       if json.is_a?(Hash) && json.has_key?('code') && json.has_key?('message')
@@ -129,18 +147,29 @@ module OpenSocial #:nodoc:
   
   
   class RpcRequest < Request
+    
+    # Defines the requests sent in the single RpcRequest. The requests are
+    # stored a key/value pairs.
     attr_accessor :requests
     
+    # Initializes an RpcRequest with the supplied connection and an optional
+    # hash of requests.
     def initialize(connection, requests = {})
       @connection = connection
       
       @requests = requests
     end
     
+    # Adds one or more requests to the RpcRequest. Expects a hash of key/value
+    # pairs (key used to refernece the data when it returns => the Request).
     def add(requests = {})
       @requests.merge!(requests)
     end
     
+    # Sends an RpcRequest to the OpenSocial endpoint by constructing JSON for
+    # the POST body and delegating the request to send_request. If an
+    # RpcRequest is sent with an empty list of requests, an exception is
+    # thrown. The response JSON is optionally unescaped (defaulting to true).
     def send(unescape = true)
       if @requests.length == 0
         raise RequestException.new('RPC request requires a non-empty hash ' +
@@ -150,6 +179,10 @@ module OpenSocial #:nodoc:
       json = send_request(request_json, unescape)
     end
     
+    # Sends an RpcRequest to the OpenSocial endpoint by constructing the
+    # service URI and dispatching the request. This method is public so that
+    # an arbitrary POST body can be constructed and sent. The response JSON is
+    # optionally unescaped.
     def send_request(post_data, unescape)
       uri = @connection.service_uri(@connection.container[:rpc], nil, nil, nil)
       data = dispatch(uri, post_data)
@@ -159,6 +192,11 @@ module OpenSocial #:nodoc:
     
     private
     
+    # Parses the response JSON. First, the JSON is unescaped, when specified,
+    # then for each element specified in @requests, the appropriate response
+    # is selected from the larger JSON response. This element is then delegated
+    # to the appropriate class to be turned into a native object (Person,
+    # Activity, etc.)
     def parse_response(response, unescape)
       if unescape
         parsed = JSON.parse(response.os_unescape)
@@ -176,6 +214,8 @@ module OpenSocial #:nodoc:
       return native_objects
     end
     
+    # Constructs a hash of the elements in data referencing each element
+    # by its 'id' attribute.
     def key_by_id(data)
       keyed_by_id = {}
       for entry in data
@@ -185,6 +225,8 @@ module OpenSocial #:nodoc:
       return keyed_by_id
     end
     
+    # Modifies each request in an outgoing RpcRequest so that its key is set
+    # to the value specified when added to the RpcRequest.
     def request_json
       keyed_requests = []
       @requests.each_pair do |key, request|

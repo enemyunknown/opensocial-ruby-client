@@ -13,6 +13,7 @@
 # limitations under the License.
 
 class String #:nodoc:
+  # Removes backslash escaping.
   def os_unescape
     unescaped = self.gsub(/\\\"/, '"')
     unescaped = unescaped.gsub('"{', "{")
