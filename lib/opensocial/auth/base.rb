@@ -19,18 +19,25 @@ require 'oauth/consumer'
 
 module OpenSocial #:nodoc:
   
-  # Provides verification of signed makeRequest using OAuth with HMAC-SHA1.
-  #  class ExampleController < ApplicationController
-  #    OpenSocial::Auth::CONSUMER_KEY = '623061448914'
-  #    OpenSocial::Auth::CONSUMER_SECRET = 'uynAeXiWTisflWX99KU1D2q5'
+  # Provides helper classes to be used in verifying and validating the user.
+  # In particular, support is provided for:
+  # 
+  # * Verification of signed makeRequest using OAuth/HMAC-SHA1
+  #   class ExampleController < ApplicationController
+  #     OpenSocial::Auth::CONSUMER_KEY = '623061448914'
+  #     OpenSocial::Auth::CONSUMER_SECRET = 'uynAeXiWTisflWX99KU1D2q5'
+  #     
+  #     include OpenSocial::Auth
   #   
-  #    include OpenSocial::Auth
+  #     before_filter :validate
   #   
-  #    before_filter :validate
-  #   
-  #    def return_private_data
-  #    end
-  #  end
+  #     def return_private_data
+  #     end
+  #   end
+  #
+  # * Request for an OAuth request token
+  #
+  # * Request for an OAuth access token, when supplied with a request token
   #
   
   
@@ -84,7 +91,7 @@ module OpenSocial #:nodoc:
 
           uri = URI.parse(connection.container[:base_uri] +
                           connection.container[:access_token_path])
-          http = Net::HTTP.new(uri.host) 
+          http = Net::HTTP.new(uri.host)
           req = Net::HTTP::Get.new(uri.request_uri)
           connection.sign!(http, req)
 
