@@ -91,7 +91,7 @@ module OpenSocial #:nodoc:
 
           uri = URI.parse(connection.container[:base_uri] +
                           connection.container[:access_token_path])
-          http = Net::HTTP.new(uri.host)
+          http = Net::HTTP.new(uri.host, uri.port)
           req = Net::HTTP::Get.new(uri.request_uri)
           connection.sign!(http, req)
 

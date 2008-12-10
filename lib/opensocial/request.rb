@@ -81,7 +81,7 @@ module OpenSocial #:nodoc:
     # request's connection has specified HMAC-SHA1 authentication, OAuth
     # parameters and signature are appended to the request.
     def dispatch(uri, post_data = nil)
-      http = Net::HTTP.new(uri.host) 
+      http = Net::HTTP.new(uri.host, uri.port)
       
       if post_data
         req = Net::HTTP::Post.new(uri.request_uri)
