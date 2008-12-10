@@ -26,6 +26,12 @@ class ConnectionTest < Test::Unit::TestCase #:nodoc:
     pass_invalid_hmac_parameters('', non_blank, '')
     pass_invalid_hmac_parameters('', '', non_blank)
     
+    assert_nothing_raised ArgumentError do
+      c = OpenSocial::Connection.new(:consumer_key => non_blank,
+                                     :consumer_secret => non_blank,
+                                     :xoauth_requestor_id => '')
+    end
+    
     assert_raise ArgumentError do
       c = OpenSocial::Connection.new(:auth => OpenSocial::Connection::AUTH_ST,
                                      :st => '')

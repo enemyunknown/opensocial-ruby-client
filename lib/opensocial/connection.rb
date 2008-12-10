@@ -75,11 +75,10 @@ module OpenSocial #:nodoc:
         self.send("#{key}=", value)
       end
       
-      if @auth == AUTH_HMAC && !has_valid_hmac_triple?
+      if @auth == AUTH_HMAC && !has_valid_hmac_double?
         raise ArgumentError.new('Connection authentication is set to ' +
-                                'HMAC-SHA1, but a valid consumer_key/' +
-                                'secret and xoauth_requestor_id triple ' +
-                                'was not supplied.')
+                                'HMAC-SHA1, but a valid consumer_key and' +
+                                'secret pair was not supplied.')
       elsif @auth == AUTH_ST && @st.empty?
         raise ArgumentError.new('Connection authentication is set to ' +
                                 'security token, but a security token was ' +
@@ -96,7 +95,7 @@ module OpenSocial #:nodoc:
       uri = [@container[:endpoint], service, guid, selector, pid].compact.
               join('/')
       
-      if @auth == AUTH_HMAC
+      if @auth == AUTH_HMAC && !xoauth_requestor_id.empty?
         uri << '?xoauth_requestor_id=' + @xoauth_requestor_id
       elsif @auth == AUTH_ST
         uri << '?st=' + self.st
@@ -108,9 +107,8 @@ module OpenSocial #:nodoc:
     
     # Verifies that the consumer key, consumer secret and requestor id are all
     # non-blank.
-    def has_valid_hmac_triple?
-      return (!@consumer_key.empty? && !@consumer_secret.empty? &&
-              !@xoauth_requestor_id.empty?)
+    def has_valid_hmac_double?
+      return (!@consumer_key.empty? && !@consumer_secret.empty?)
     end
   end
 end
