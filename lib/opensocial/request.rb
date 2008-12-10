@@ -90,12 +90,7 @@ module OpenSocial #:nodoc:
         req = Net::HTTP::Get.new(uri.request_uri)
       end
       
-      if @connection.auth == Connection::AUTH_HMAC
-        consumer = OAuth::Consumer.new(@connection.consumer_key,
-                                       @connection.consumer_secret)
-        req.oauth!(http, consumer, @connection.consumer_token,
-                   :scheme => 'query_string')
-      end
+      @connection.sign!(http, req)
       
       if post_data
         resp = http.post(req.path, post_data)

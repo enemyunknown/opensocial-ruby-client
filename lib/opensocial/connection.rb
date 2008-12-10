@@ -31,7 +31,12 @@ module OpenSocial #:nodoc:
                 :rpc => 'rpc' }
     MYSPACE = { :endpoint => 'http://api.myspace.com/v2',
                 :rest => '',
-                :rpc => '' }
+                :rpc => '',
+                :base_uri => 'http://api.myspace.com',
+                :request_token_path => '/request_token',
+                :authorize_path => '/authorize',
+                :access_token_path => '/access_token',
+                :http_method => :get }
     
     AUTH_HMAC = 0
     AUTH_ST = 1
@@ -101,6 +106,14 @@ module OpenSocial #:nodoc:
         uri << '?st=' + self.st
       end
       URI.parse(uri)
+    end
+    
+    # Signs a request using OAuth.
+    def sign!(http, req)
+      if @auth == AUTH_HMAC
+        consumer = OAuth::Consumer.new(@consumer_key, @consumer_secret)
+        req.oauth!(http, consumer, @consumer_token, :scheme => 'query_string')
+      end
     end
     
     private
