@@ -17,7 +17,7 @@ $:.unshift(File.expand_path(File.dirname(__FILE__))) unless
 
 
 require 'opensocial/auth/action_controller_request'
-require 'opensocial/auth/validate'
+require 'opensocial/auth/base'
 require 'opensocial/string/merb_string'
 require 'opensocial/string/os_string'
 require 'opensocial/base'
