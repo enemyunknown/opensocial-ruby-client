@@ -5,22 +5,14 @@
 
 <html>
 <head>
-  <title>send (OpenSocial::FetchGroupsRequest)</title>
+  <title>new (OpenSocial::FetchGroupsRequest)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/opensocial/group.rb, line 58</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send</span>
-      <span class="ruby-identifier">json</span> = <span class="ruby-identifier">send_request</span>(<span class="ruby-constant">SERVICE</span>, <span class="ruby-ivar">@guid</span>)
-      
-      <span class="ruby-identifier">groups</span> = <span class="ruby-constant">Collection</span>.<span class="ruby-identifier">new</span>
-      <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">entry</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">json</span>[<span class="ruby-value str">'entry'</span>]
-        <span class="ruby-identifier">group</span> = <span class="ruby-constant">Group</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">entry</span>)
-        <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">group</span>.<span class="ruby-identifier">id</span>] = <span class="ruby-identifier">group</span>
-      <span class="ruby-keyword kw">end</span>
-      
-      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">groups</span>
+  <pre><span class="ruby-comment cmt"># File lib/opensocial/group.rb, line 65</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">connection</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">guid</span> = <span class="ruby-value str">'@me'</span>)
+      <span class="ruby-keyword kw">super</span>
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

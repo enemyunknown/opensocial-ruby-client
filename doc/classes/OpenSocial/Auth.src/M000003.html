@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_access_token (OpenSocial::Auth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/opensocial/auth/base.rb, line 82</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_access_token</span>(<span class="ruby-identifier">connection</span>, <span class="ruby-identifier">token</span>, <span class="ruby-identifier">secret</span>)
+      <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">token</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">secret</span>)
+        <span class="ruby-identifier">consumer</span> = <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Consumer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">consumer_key</span>,
+                                       <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">consumer_secret</span>,
+                                       <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">container</span>)
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">consumer_token</span>.<span class="ruby-identifier">token</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">&amp;&amp;</span>
+           <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">consumer_token</span>.<span class="ruby-identifier">secret</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">consumer_token</span> = <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">Token</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">token</span>, <span class="ruby-identifier">secret</span>)
+
+          <span class="ruby-identifier">uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">container</span>[<span class="ruby-identifier">:base_uri</span>] <span class="ruby-operator">+</span>
+                          <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">container</span>[<span class="ruby-identifier">:access_token_path</span>])
+          <span class="ruby-identifier">http</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">host</span>, <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">port</span>)
+          <span class="ruby-identifier">req</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP</span><span class="ruby-operator">::</span><span class="ruby-constant">Get</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">request_uri</span>)
+          <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">sign!</span>(<span class="ruby-identifier">http</span>, <span class="ruby-identifier">req</span>)
+
+          <span class="ruby-identifier">resp</span> = <span class="ruby-identifier">http</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">req</span>.<span class="ruby-identifier">path</span>)
+
+          <span class="ruby-identifier">matches</span> = <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/oauth_token=(.*?)&amp;oauth_token_secret=(.*)/</span>)
+          <span class="ruby-identifier">access_token</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">1</span>]
+          <span class="ruby-identifier">access_secret</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">2</span>]
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">reusable_token</span> = <span class="ruby-constant">OAuth</span><span class="ruby-operator">::</span><span class="ruby-constant">AccessToken</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">consumer</span>, <span class="ruby-identifier">access_token</span>, <span class="ruby-identifier">access_secret</span>)
+        <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">consumer_token</span> = <span class="ruby-identifier">reusable_token</span>
+
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">access_token</span>, <span class="ruby-identifier">access_secret</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
