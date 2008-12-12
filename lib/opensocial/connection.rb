@@ -26,7 +26,7 @@ module OpenSocial #:nodoc:
     ORKUT = { :endpoint => 'http://sandbox.orkut.com/social',
               :rest => 'rest/',
               :rpc => 'rpc/' }
-    IGOOGLE = { :endpoint => 'http://gmodules.com/api',
+    IGOOGLE = { :endpoint => 'http://sandbox.gmodules.com/api',
                 :rest => '',
                 :rpc => 'rpc' }
     MYSPACE = { :endpoint => 'http://api.myspace.com/v2',
